@@ -3,17 +3,50 @@ import "./app.scss";
 
 class App extends React.Component {
     state = {
-        search: "Narek",
-        cats: ["Marvin", "Darvin", "Harry Potter"],
+        search: "",
+        cats: [
+            {
+                name: "Marvin",
+                email: "marvin@mail.com",
+                // url: "https://robohash.org/1?set=set4&size=180x180",
+            },
+            {
+                name: "Darvin",
+                email: "darvin@mail.com",
+                // url: "https://robohash.org/2?set=set4&size=180x180",
+            },
+            {
+                name: "Harry Potter",
+                email: "harry@mail.com",
+                // url: "https://robohash.org/3?set=set4&size=180x180",
+            },
+            {
+                name: "Kitty",
+                email: "harry@mail.com",
+                // url: "https://robohash.org/3?set=set4&size=180x180",
+            },
+            {
+                name: "Petya",
+                email: "harry@mail.com",
+                // url: "https://robohash.org/3?set=set4&size=180x180",
+            },
+        ],
     };
 
     handleChange = (event) => {
-        const value = event.target.value;
-        this.setState({ search: value });
+        //? INPUTVALUE
+        const searchValue = event.target.value;
+
+        //? SET INPUT VALUE TO STATE
+        this.setState({ search: searchValue });
     };
 
     render() {
-        console.log(this.state.cats);
+        const mySearchInputValue = this.state.search.toLowerCase();
+        const filteredCatsData = this.state.cats.filter((cat) => {
+            const catLowerCaseName = cat.name.toLowerCase();
+            return catLowerCaseName.includes(mySearchInputValue);
+        });
 
         return (
             <div className="app">
@@ -22,6 +55,7 @@ class App extends React.Component {
                 <div className="app__search">
                     <input
                         onChange={(event) => this.handleChange(event)}
+                        value={this.state.search}
                         className="app__search-input"
                         type="text"
                         name="search"
@@ -30,9 +64,19 @@ class App extends React.Component {
                 </div>
 
                 <main className="app__main">
-                    <ul>
-                        {this.state.cats.map((cat) => {
-                            return <li>{cat}</li>;
+                    <ul className="app__main-list">
+                        {filteredCatsData.map((cat, idx) => {
+                            return (
+                                <li className="item">
+                                    <img
+                                        src={`https://robohash.org/${idx + 1}?set=set4`}
+                                        alt="cat"
+                                        className="item__image"
+                                    />
+                                    <div className="item__header">{cat.name}</div>
+                                    <div>{cat.email}</div>
+                                </li>
+                            );
                         })}
                     </ul>
                 </main>

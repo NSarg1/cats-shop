@@ -3,6 +3,7 @@
     width: 100vw;
     background-image: linear-gradient(to left, rgba(7, 27, 82, 1) 0%, rgba(0, 128, 128, 1) 100%);
     overflow: auto;
+
     &__header {
         font-size: 72px;
         color: #0ccac4;
@@ -16,6 +17,47 @@
 
         &-input {
             padding: 20px;
+        }
+    }
+
+    &__main {
+        margin-top: 20px;
+        &-list {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .item {
+                cursor: pointer;
+                height: 350px;
+                width: auto;
+                padding: 15px;
+                background-color: #95dada;
+                margin: 20px;
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: column;
+                align-items: center;
+                border-radius: 5px;
+                transition: 0.3s;
+
+                color: #000;
+
+                &:hover {
+                    transform: scale(1.05);
+                }
+
+                &__image {
+                    object-fit: contain;
+                    width: 180px;
+                }
+
+                &__header {
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+            }
         }
     }
 }
