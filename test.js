@@ -1,5 +1,5 @@
-// const printName = (name) => {
-//     console.log(name);
+// const printName = (props) => {
+//     console.log(props.name);
 // };
 
 // printName({ name: "Ashot" });
@@ -17,11 +17,26 @@
 //     { name: "Petya", email: "harry@mail.com" },
 // ];
 
-// const filteredData = data.filter((item) => {
-//     return item.name.includes("y");
+// const filteredData = data.map((item) => {
+//     return item;
 // });
 
-// console.log(filteredData);
-"Narek".includes("N");
+// // console.log(filteredData);
+// "Narek".includes("N");
 
-console.log("NAREK".toLowerCase());
+// console.log("NAREK".toLowerCase());
+
+const Component = {
+    state: {
+        search: "",
+        cats: [{ name: "Narek" }, { name: "Shmavon" }],
+    },
+
+    setState(newData) {
+        this.state = { ...this.state, ...newData };
+    },
+};
+
+Component.setState({ search: "Narek" });
+
+console.log(Component.state);

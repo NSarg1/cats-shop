@@ -1,4 +1,9 @@
 import React from "react";
+
+// COMPONENTS
+import CardItem from "./components/card-item/CardItem.component";
+
+// STYLES
 import "./app.scss";
 
 class App extends React.Component {
@@ -66,17 +71,7 @@ class App extends React.Component {
                 <main className="app__main">
                     <ul className="app__main-list">
                         {filteredCatsData.map((cat, idx) => {
-                            return (
-                                <li className="item">
-                                    <img
-                                        src={`https://robohash.org/${idx + 1}?set=set4`}
-                                        alt="cat"
-                                        className="item__image"
-                                    />
-                                    <div className="item__header">{cat.name}</div>
-                                    <div>{cat.email}</div>
-                                </li>
-                            );
+                            return <CardItem key={idx} cat={cat} idx={idx} />;
                         })}
                     </ul>
                 </main>
