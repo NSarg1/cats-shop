@@ -26,17 +26,54 @@
 
 // console.log("NAREK".toLowerCase());
 
-const Component = {
-    state: {
-        search: "",
-        cats: [{ name: "Narek" }, { name: "Shmavon" }],
-    },
+// const Component = {
+//     state: {
+//         search: "",
+//         cats: [{ name: "Narek" }, { name: "Shmavon" }],
+//     },
 
-    setState(newData) {
-        this.state = { ...this.state, ...newData };
-    },
-};
+//     setState(newData) {
+//         this.state = { ...this.state, ...newData };
+//     },
+// };
 
-Component.setState({ search: "Narek" });
+// Component.setState({ search: "Narek" });
 
-console.log(Component.state);
+// console.log(Component.state);
+
+class Person {
+    constructor(name, surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    printFullName() {
+        console.log(this.name + " " + this.surname);
+    }
+}
+
+// const person1 = {
+//     name: "Aram",
+//     surname: "Sargysan",
+//     printFullName() {
+//         console.log(this.name + " " + this.surname);
+//     },
+// };
+
+// const person2 = {
+//     name: "Aram",
+//     surname: "Sargysan",
+//     printFullName() {
+//         console.log(this.name + " " + this.surname);
+//     },
+// };
+
+// const person3 = {
+//     name: "Aram",
+//     surname: "Sargysan",
+//     printFullName() {
+//         console.log(this.name + " " + this.surname);
+//     },
+// };
+
+console.log(!!{}); // --->>>  falsy values --->>> null, undefinnd, 0, "", false

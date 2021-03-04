@@ -1,8 +1,9 @@
 const CardItem = (props) => {
+
     return (
         <li className="item">
             <img
-                src={`https://robohash.org/${props.idx + 1}?set=set4`}
+                src={`https://robohash.org/${props.id}?set=set4`}
                 alt="cat"
                 className="item__image"
             />
