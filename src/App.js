@@ -47,7 +47,7 @@ class App extends React.Component {
             catsFromServer: [],
         };
 
-        // console.log("Constructor...");
+        console.log("Constructor...");
     }
 
     handleChange = (event) => {
@@ -59,16 +59,14 @@ class App extends React.Component {
     };
 
     componentDidMount() {
+        console.log("componentDidMount...");
         this.setState({ isLoading: true });
-        const response = axios.get("https://jsonplaceholder.typicode.com/userssss");
+        const response = axios.get("https://jsonplaceholder.typicode.com/users");
+
         response
             .then((result) => {
                 const data = result.data;
-
-                setTimeout(() => {
-                    this.setState({ catsFromServer: data, isLoading: false });
-                }, 2000);
-
+                this.setState({ catsFromServer: data, isLoading: false });
                 // console.log("OK");
             })
             .catch((err) => {
@@ -81,16 +79,26 @@ class App extends React.Component {
                 // console.log("չOK");
             });
     }
-    componentDidUpdate() {}
+
+    deleteCatHandle = (id) => {
+        const cats = [...this.state.catsFromServer];
+
+        const selectedUserIndex = this.state.catsFromServer.findIndex((item, idx) => {
+            return item.id === id;
+        });
+        console.log(selectedUserIndex);
+        cats.splice(selectedUserIndex, 1);
+        console.log(cats);
+        this.setState({ catsFromServer: cats });
+    };
 
     render() {
-        // const mySearchInputValue = this.state.search.toLowerCase();
-        // const filteredCatsData = this.state.cats.filter((cat) => {
-        //     const catLowerCaseName = cat.name.toLowerCase();
-        //     return catLowerCaseName.includes(mySearchInputValue);
-        // });
-
-        console.log(this.state);
+        console.log("render...");
+        const mySearchInputValue = this.state.search.toLowerCase();
+        const filteredCatsData = this.state.catsFromServer.filter((cat) => {
+            const catLowerCaseName = cat.name.toLowerCase();
+            return catLowerCaseName.includes(mySearchInputValue);
+        });
 
         return (
             <div className="app">
@@ -110,8 +118,14 @@ class App extends React.Component {
                 <main className="app__main">
                     <ul className="app__main-list">
                         {!!this.state.catsFromServer.length &&
-                            this.state.catsFromServer.map((cat) => {
-                                return <CardItem key={cat.id} cat={cat} id={cat.id} />;
+                            filteredCatsData.map((cat) => {
+                                return (
+                                    <CardItem
+                                        key={cat.id}
+                                        cat={cat}
+                                        deleteCatHandle={this.deleteCatHandle}
+                                    />
+                                );
                             })}
                     </ul>
                 </main>
